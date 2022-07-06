@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Log in";
+    var returnUrl = ViewData["returnUrl"] as string;
+    var error = TempData["Error"] as string;
+}
+
+<h1>@ViewData["Title"]</h1>
+@if (!string.IsNullOrEmpty(error))
+{
+    <h2 class="alert-danger">@error</h2>
+}
+<div class="row">
+    <div class="col-md-4">
+        <section>
+            <form id="account" method="post" action="/Login?ReturnUrl=@System.Net.WebUtility.UrlEncode(returnUrl)">
+                <h2>Use a local account to log in.</h2>
+                <hr />
+                <div class="form-floating">
+                    <input class="form-control" autocomplete="username" aria-required="true" name="username" placeholder="Username" type="text"/>
+                    <label class="form-label"></label>
+                    <span class="text-danger"></span>
+                </div>
+                <div class="form-floating">
+                    <input class="form-control" autocomplete="current-password" aria-required="true" name="password" placeholder="Password" type="password"/>
+                    <label class="form-label"></label>
+                    <span class="text-danger"></span>
+                </div>
+                <div>
+                    <button id="login-submit" type="submit" value="login" class="w-100 btn btn-lg btn-primary">Log in</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
